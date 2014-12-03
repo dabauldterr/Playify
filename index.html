@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+            
+        </style>
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        
+    </head>
+    <body>
+              <div id = "cover"><img src="/img/loader_4.gif"></div>
+
+      <div class = "container">
+
+        <div class="row">
+          <div class="col-xs-5 center-block">
+           
+           <div class="input-group inputs">
+              <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+              <input type="text" id = "artist" class=" typeahead form-control " placeholder="Artist">
+            </div>
+            <div class="input-group inputs">
+              <span class="input-group-addon"><span class="glyphicon glyphicon-music"></span></span>
+              <input type="text" id = "track" class=" typeahead form-control " placeholder="Title">
+            </div>
+            <h3 id = "playlist-info">Login to Spotify to publish playlist </h3>
+            <button class="btn btn-default"id = "mybutton5">Preview Playlist</button>
+
+            <a class ="auth-link" ><button id = "login" class="btn btn-default" >Login</button></a>
+          </div> 
+          <div class="panel panel-default " id = "originalPlaylist">
+              <div class="panel-heading">Playlist</div>
+                <div role="tabpanel">
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#playlist-tracks" aria-controls="playlist-tracks" role="tab" data-toggle="tab">Playlist Tracks</a></li>
+                    <li role="presentation"><a href="#playlist-artists" aria-controls="playlist-artists" role="tab" data-toggle="tab">Playlist Artist</a></li>
+                  </ul>
+                  <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="playlist-tracks">
+                      <div class="panel-body">
+                        <ul class="list-group" id = "tracks">
+                        </ul>
+                        <div class = "navi" id = "tracks-links"></div>
+                      </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="playlist-artists">
+                      <div class="panel-body">
+                        <div class="row" id="artists-thumb">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>  
+              </div> 
+            </div>
+           <!-- <div id = "wait"><img src="/img/gif-load (1).gif"></div>-->
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
+        <script type="text/javascript" src="js/vendor/typehead.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/jPages.js"></script>
+        <script src="js/main.js"></script>
+        <script type="text/javascript" src="//localhost:3000/socket.io/socket.io.js">></script>
+        <script>
+        // get key from current url
+         function getParameterByName(name) {
+          name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+          var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+          results = regex.exec(location.search);
+          return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+          }
+          var socket = io.connect('//localhost:3000');           
+              var code = getParameterByName('code');
+              socket.emit('code', { x: code});
+              socket.on('url', function(data) {
+                $('.auth-link').attr('href',data.value);
+                });
+                $('#login').click(function(){
+                localStorage.artistName = $('#artist').val();
+                localStorage.trackName = $('#track').val();
+                $('#artist').val(localStorage.artistName);  
+                $('#track').val(localStorage.trackName);
+              });
+                $('#create-playlist').click(function(){
+                var playlistName = localStorage.artistName + ':'+ localStorage.trackName +' '+ 'Playlist';
+                if(!$('#artist').val() &&  !$('#track').val() && !spotifyTrackString){
+                    localStorage.removeItem("tracksArray");
+                }
+                else{
+                    socket.emit('playlsitName', { x: playlistName,y:localStorage.tracksArray.split(",")});
+                }
+              });
+        </script>
+        </div>
+        
+    </body>
+</html>

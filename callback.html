@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+            body {
+              
+                color:#555;
+                text-align: center;
+            }
+            #view-playlist{
+              display: none;
+            }
+            #cover{
+              display: none;
+            }
+        </style>
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        
+    </head>
+    <body> 
+              <div id = "cover"><img src="/img/loader_4.gif"></div>
+      <div class = "container">
+        <div class="row">
+          <div class="col-xs-5 center-block">
+            <div id = "info">
+                      <h2 id = "instructions"> </h2>
+                      <h3 id = "artist-name"> </h3>
+                      </div>
+
+                      <button class="btn btn-default" id = "publish-playlist">Create</button>
+                      <h2 id = "view-playlist-text"> </h2>
+                      <a target = "_blank" id = "playlis-link"href=""><button class="btn btn-default" id = "view-playlist">Go</button></a>
+                      <a id = "create-another-link" href="index.html"><button class="btn btn-default" id = "create-another">Create Another</button></a>
+
+                    </div>
+                  </div>
+                </div>
+            
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
+        <script type="text/javascript" src="js/vendor/typehead.js"></script>
+        <script src="js/vendor/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/jPages.js"></script>
+        <script src="js/main.js"></script>
+        <script type="text/javascript" src="//localhost:3000/socket.io/socket.io.js">></script>
+        <script>
+        $('#view-playlist').css('display','none');
+        $('#instructions').text('Press "Create" to publish playlist based on:')
+        $('#artist-name').text(localStorage.artistName+"-"+localStorage.trackName).css('color','#878484');
+        $('#publish-playlist').css('display','block');
+        
+        // get key from current url
+         function getParameterByName(name) {
+          name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+          var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+          results = regex.exec(location.search);
+          return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+          }
+          var socket = io.connect('//localhost:3000');           
+            
+              
+              var code = getParameterByName('code');
+              socket.emit('code', { x: code});
+              
+                $('#publish-playlist').click(function(){
+                  
+                  $('body').ajaxStart(function(){
+                    $("#cover").css("display","block");
+                  });
+                
+                  var playlistName = localStorage.artistName + ':'+ localStorage.trackName +' '+ 'Playlist';
+                
+                  socket.emit('playlsitName', { x: playlistName,y:localStorage.tracksArray.split(",")});
+                  //check for error from creating playlist
+                  socket.on('error', function(data){
+                    if(data.text|| ){
+                      $(location).attr('href','index.html');
+                    }
+                  });
+                  //when playlist sccesfully created and filled
+                  socket.on('succesful', function(data){
+                        console.log("text",data.text);
+                        console.log("text",data.playId);
+                        var href = "https://play.spotify.com/user/"+data.playId[2]+"/playlist"+data.playId[4];
+                          $('#playlis-link').attr('href',href)
+                          $('#publish-playlist').css('display','none');
+                          $('#info').css('display','none');
+                          $('#view-playlist').css('display','block');
+                          $('#publish-another').css('display','block');
+                          $('#view-playlist-text').text('View your playlist');
+                          $('#view-playlist').css('display','block');
+                          $('#create-another').css('display','block');
+                          $('body').ajaxComplete(function(){
+                          $("#cover").css("display","none");
+                          });
+                  });
+                });
+                
+                
+        </script>
+        </div>
+        
+    </body>
+</html>
