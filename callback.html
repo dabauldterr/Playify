@@ -42,7 +42,7 @@
 
                       <button class="btn btn-default" id = "publish-playlist">Create</button>
                       <h2 id = "view-playlist-text"> </h2>
-                      <a target = "_blank" id = "playlis-link"href=""><button class="btn btn-default" id = "view-playlist">Go</button></a>
+                      <a target = "_blank" id = "playlis-link"href=""><button class="btn btn-default" id = "view-playlist">View Your Playlist</button></a>
                       <a id = "create-another-link" href="index.html"><button class="btn btn-default" id = "create-another">Create Another</button></a>
 
                     </div>
@@ -58,7 +58,7 @@
         <script>
         $('#view-playlist').css('display','none');
         $('#instructions').text('Press "Create" to publish playlist based on:')
-        $('#artist-name').text(localStorage.artistName+"-"+localStorage.trackName).css('color','#878484');
+        $('#artist-name').text(localStorage.artistName+"-"+localStorage.trackName).css('color','rgb(231, 104, 104)');
         $('#publish-playlist').css('display','block');
         
         // get key from current url
@@ -85,7 +85,7 @@
                   socket.emit('playlsitName', { x: playlistName,y:localStorage.tracksArray.split(",")});
                   //check for error from creating playlist
                   socket.on('error', function(data){
-                    if(data.text|| ){
+                    if(data.text){
                       $(location).attr('href','index.html');
                     }
                   });
@@ -99,7 +99,6 @@
                           $('#info').css('display','none');
                           $('#view-playlist').css('display','block');
                           $('#publish-another').css('display','block');
-                          $('#view-playlist-text').text('View your playlist');
                           $('#view-playlist').css('display','block');
                           $('#create-another').css('display','block');
                           $('body').ajaxComplete(function(){

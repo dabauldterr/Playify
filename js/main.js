@@ -29,11 +29,20 @@ $('#mybutton5').prop('disabled',true);
 $('#artist').on( 'keyup', function( e ) {
      if( e.which == 9 || e.which==13 &&$('#artist').val()) {
          $('#track').prop('disabled',false).css("background","white");
-         $('#mybutton5').prop('disabled',false);
+         
      }
+     
  } );
-
-	
+$('#track').on( 'keyup', function( e ) {
+     if($('#track').val().length>0) {
+         $('#mybutton5').prop('disabled',false);
+         
+     }
+     else{
+     	$('#mybutton5').prop('disabled',true);
+     }
+     
+ } );
 
 function getTrackId(){
 	$(document).ajaxStart(function(){
@@ -96,10 +105,21 @@ function getPlaylist(a){
 	dups={};
 		
 	//get request
-	var url = 'http://developer.echonest.com/api/v4/playlist/static?api_key=JSSXGZIEPOLRS21K7&format=json&results=100&sort=song_hotttnesss-desc&bucket=id:spotify&bucket=tracks';
+	var url = 'http://developer.echonest.com/api/v4/playlist/static?api_key=JSSXGZIEPOLRS21K7&format=json&sort=song_hotttnesss-desc&bucket=id:spotify&bucket=tracks';
 	$.getJSON(url,{
 		'song_id':a,
-		'type':'song-radio'
+		'type':'song-radio',
+		'min_tempo':tempoMin,
+		'max_tempo':tempoMax,
+		'max_duration':durationMax,
+		'min_duration':durationMin,
+		'results':resultsMax,
+		'song_max_hotttnesss':hotSongMax,
+		'song_min_hotttnesss':hotSongMin,
+		'artist_max_hotttnesss':hotArtistMax,
+		'artist_min_hotttnesss':hotArtistMin,
+		'artist_max_familiarity':artistfamiliarMax,
+		'artist_min_familiarity':artistfamiliarMin
 	}, 
 	function(data){
 		$.each(data.response.songs, function(i,item){
@@ -213,6 +233,7 @@ function pagination(){
         
       });
     $('#mybutton5').css('display','none');
+    $('#demo,#dropdown').css('display','none');
 	$('.input-group').css('display','none');
 	$('#playlist-info').css('display','inherit');
 	$('#login').css('display','block');

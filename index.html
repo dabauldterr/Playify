@@ -11,9 +11,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        <style>
-            
-        </style>
+        
+        <link rel="stylesheet" href="node_modules/bootstrap-slider/dist/css/bootstrap-slider.css">
+        
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/main.css">
 
@@ -28,18 +28,99 @@
         <div class="row">
           <div class="col-xs-5 center-block">
            
-           <div class="input-group inputs">
+            <div class="input-group inputs">
               <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
               <input type="text" id = "artist" class=" typeahead form-control " placeholder="Artist">
             </div>
+            
             <div class="input-group inputs">
               <span class="input-group-addon"><span class="glyphicon glyphicon-music"></span></span>
               <input type="text" id = "track" class=" typeahead form-control " placeholder="Title">
             </div>
+            
+            
+
+
+            <a id = "dropdown"href="#demo" data-toggle="collapse" >More options</a>
+            <div id="demo" class="collapse">
+              
+              <div class = "slider-container single-value-container single-value">
+                <label class="headings" for="results">No. of Tracks</label>
+                <div class="slider-and-value">
+                  <span class = "current-values-container-left" id="resultsMax-value-label"><span class="current-values" id="resultsMax-value-left"></span></span>
+                   <input id="results" type="text" class="span2" value=""/>
+                  <span class = "current-values-container-right" id=""><span class="current-values"id=""></span></span>
+                </div>
+                <input type="checkbox" id="c1" name="cc" />
+                <label id ="results-label"class ="check-label"for="c1"><span></span></label>
+              </div>
+
+              <div class = "slider-container">
+                <label class="headings" for="hotsong">Max/Min Song Hottness</label>
+                <div class="slider-and-value">
+                  <span class = "current-values-container-left" id="hotsong-value-label"><span class="current-values" id="hotsong-value-left"></span></span>
+                   <input id="hotsong" type="text" class="span2" value=""/>
+                  <span class = "current-values-container-right" id="hotsong-value-label"><span class="current-values"id="hotsong-value-right"></span></span>
+                </div>
+                <input type="checkbox" id="c2" name="cc" />
+                <label id ="hotsong-label"class ="check-label"for="c2"><span></span></label>
+              </div>
+
+              <div class = "slider-container">
+                <label class="headings" for="hotartist">Max/Min Artist Hottness</label>
+                <div class="slider-and-value">
+                  <span class = "current-values-container-left" id="hotartist-value-label"><span class="current-values" id="hotartist-value-left"></span></span>
+                   <input id="hotartist" type="text" class="span2" value=""/>
+                  <span class = "current-values-container-right" id="hotartist-value-label"><span class="current-values"id="hotartist-value-right"></span></span>
+                </div>
+                <input type="checkbox" id="c3" name="cc" />
+                <label id ="hotartist-label"class ="check-label"for="c3"><span></span></label>
+              </div>
+
+              <div class = "slider-container">
+                <label class="headings" for="artistfamiliar">Max/Min Artist Familiarity</label>
+                <div class="slider-and-value">
+                  <span class = "current-values-container-left" id="artistfamiliar-value-label"><span class="current-values" id="artistfamiliar-value-left"></span></span>
+                   <input id="artistfamiliar" type="text" class="span2" value=""/>
+                  <span class = "current-values-container-right" id="artistfamiliar-value-label"><span class="current-values"id="artistfamiliar-value-right"></span></span>
+                </div>
+                <input type="checkbox" id="c6" name="cc" />
+                <label id ="artistfamiliar-label"class ="check-label"for="c6"><span></span></label>
+              </div>
+
+              <div class = "slider-container">
+                <label class="headings" for="duration">Max/Min Duration</label>
+                <div class="slider-and-value">
+                  <span class = "current-values-container-left" id="duration-value-label"><span class="current-values" id="duration-value-left"></span></span>
+                   <input id="duration" type="text" class="span2" value=""/>
+                  <span class = "current-values-container-right" id="duration-value-label"><span class="current-values"id="duration-value-right"></span></span>
+                </div>
+                <input type="checkbox" id="c4" name="cc" />
+                <label id ="duration-label"class ="check-label"for="c4"><span></span></label>
+              </div>
+              
+              <div class = "slider-container">
+                <label class="headings" for="tempo">Max/Min Tempo</label>
+                <div class="slider-and-value">
+                  <span class = "current-values-container-left" id="tempo-value-label"><span class="current-values" id="tempo-value-left"></span></span>
+                   <input id="tempo" type="text" class="span2" value=""/>
+                  <span class = "current-values-container-right" id="tempo-value-label"><span class="current-values"id="tempo-value-right"></span></span>
+                </div>
+                <input type="checkbox" id="c5" name="cc" />
+                <label id ="tempo-label"class ="check-label"for="c5"><span></span></label>
+              </div>
+            
+            </div>
+            
             <h3 id = "playlist-info">Login to Spotify to publish playlist </h3>
             <button class="btn btn-default"id = "mybutton5">Preview Playlist</button>
+            
+          
 
-            <a class ="auth-link" ><button id = "login" class="btn btn-default" >Login</button></a>
+
+
+
+          <a class ="auth-link" ><button id = "login" class="btn btn-default" >Login</button></a>
           </div> 
           <div class="panel panel-default " id = "originalPlaylist">
               <div class="panel-heading">Playlist</div>
@@ -71,9 +152,200 @@
         <script type="text/javascript" src="js/vendor/typehead.js"></script>
         <script src="js/vendor/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/jPages.js"></script>
+        <script type="text/javascript" src="node_modules/bootstrap-slider/js/bootstrap-slider.js"></script>
         <script src="js/main.js"></script>
         <script type="text/javascript" src="//localhost:3000/socket.io/socket.io.js">></script>
-        <script>
+        <script type="text/javascript">
+        
+        var resultsMax=15;
+        var resultsSlider = $('#results').slider({
+          max:100,
+          min:1,
+          step:1,
+          value:40,
+          enabled:false
+        });
+        $("#resultsMax-value-left").text(40);
+        $("#results").on("slide", function(slideEvt) {
+          $("#resultsMax-value-left").text(slideEvt.value);
+        });
+        $("#c1").click(function() {
+          if(!this.checked) {
+            $("#results").slider("disable");
+              resultsMax=50;
+            }
+            else {
+              $("#results").slider("enable");
+              $("#results").on("slide", function(slideEvt) {
+                resultsMax = slideEvt.value;
+              });
+            }
+        });
+
+        var hotSongMax='';
+        var hotSongMin='';
+        var tempoSlider = $('#hotsong').slider({
+          max:100,
+          min:10,
+          step:1,
+          value:[40,50],
+          enabled:false
+        });
+        $("#hotsong-value-left").text(40);
+        $("#hotsong-value-right").text(50);
+        $("#hotsong").on("slide", function(slideEvt) {
+          $("#hotsong-value-left").text(slideEvt.value[0]);
+          $("#hotsong-value-right").text(slideEvt.value[1]);
+        });
+        $("#c2").click(function() {
+          if(!this.checked) {
+            $("#hotsong").slider("disable");
+              hotSongMin='';
+              hotSongMax='';
+            }
+            else {
+              $("#hotsong").slider("enable");
+              $("#hotsong").on("slide", function(slideEvt) {
+                hotSongMin = slideEvt.value[0]/100;
+                hotSongMax = slideEvt.value[1]/100;
+              });
+            }
+        });
+
+        var hotArtistMax='';
+        var hotArtistMin='';
+        $('#hotartist').slider({
+          max:100,
+          min:10,
+          step:1,
+          value:[40,50],
+          enabled:false
+        });
+        $("#hotartist-value-left").text(40);
+        $("#hotartist-value-right").text(50);
+        $("#hotartist").on("slide", function(slideEvt) {
+          $("#hotartist-value-left").text(slideEvt.value[0]);
+          $("#hotartist-value-right").text(slideEvt.value[1]);
+        });
+        $("#c3").click(function() {
+          if(!this.checked) {
+            $("#hotartist").slider("disable");
+              hotArtistMax='';
+              hotArtistMin='';
+            }
+            else {
+              $("#hotartist").slider("enable");
+              $("#hotartist").on("slide", function(slideEvt) {
+                hotArtistMin = slideEvt.value[0]/100;
+                hotArtistMax = slideEvt.value[1]/100;
+              });
+            }
+        });
+
+        var durationMax='';
+        var durationMin='';
+        $('#duration').slider({
+          max:3600,
+          min:1,
+          step:60,
+          value:[1800,2400],
+          enabled:false
+        });
+                var minutesleft = Math.floor(1800 / 60);
+                var secondsleft = 1800 - minutesleft * 60;
+                var left=minutesleft+":"+secondsleft+'0';
+                var minutesright = Math.floor(2400 / 60);
+                var secondsright = 2400 - minutesright * 60;
+                var right=minutesright+":"+secondsright+'0';
+
+        $("#duration-value-left").text(left);
+        $("#duration-value-right").text(right);
+        $("#duration").on("slide", function(slideEvt) {
+                var minutesleft = Math.floor(slideEvt.value[0] / 60);
+                var secondsleft = slideEvt.value[0] - minutesleft * 60;
+                var left=minutesleft+":"+secondsleft+'0';
+                var minutesright = Math.floor(slideEvt.value[1] / 60);
+                var secondsright = slideEvt.value[1] - minutesright * 60;
+                var right=minutesright+":"+secondsright+'0';
+          $("#duration-value-left").text(left);
+          $("#duration-value-right").text(right);
+        });
+        $("#c4").click(function() {
+          if(this.checked) {
+            $("#duration").slider("enable");
+              $("#duration").on("slide", function(slideEvt) {
+                durationMin = slideEvt.value[0];
+                durationMax = slideEvt.value[1];
+              });
+            }
+            else {
+              $("#duration").slider("disable");
+              durationMin='';
+              durationMax='';
+            }
+        });
+
+        var tempoMin='';
+        var tempoMax='';
+        var tempoSlider = $('#tempo').slider({
+          max:500,
+          min:0,
+          step:1,
+          value:[200,300],
+          enabled:false
+        });
+        $("#tempo-value-left").text(200);
+        $("#tempo-value-right").text(300);
+        $("#tempo").on("slide", function(slideEvt) {
+          $("#tempo-value-left").text(slideEvt.value[0]);
+          $("#tempo-value-right").text(slideEvt.value[1]);
+        });
+        $("#c5").click(function() {
+          if(!this.checked) {
+            $("#tempo").slider("disable");
+              tempoMin='';
+              tempoMax='';
+            }
+            else {
+              $("#tempo").slider("enable");
+              $("#tempo").on("slide", function(slideEvt) {
+                tempoMin = slideEvt.value[0];
+                tempoMax = slideEvt.value[1];
+              });
+            }
+        });
+
+
+
+        var artistfamiliarMax='';
+        var artistfamiliarMin='';
+        $('#artistfamiliar').slider({
+          max:100,
+          min:10,
+          step:1,
+          value:[40,50],
+          enabled:false
+        });
+        $("#artistfamiliar-value-left").text(40);
+        $("#artistfamiliar-value-right").text(50);
+        $("#artistfamiliar").on("slide", function(slideEvt) {
+          $("#artistfamiliar-value-left").text(slideEvt.value[0]);
+          $("#artistfamiliar-value-right").text(slideEvt.value[1]);
+        });
+        $("#c6").click(function() {
+          if(!this.checked) {
+            $("#artistfamiliar").slider("disable");
+              artistfamiliarMax='';
+              artistfamiliarMin='';
+            }
+            else {
+              $("#artistfamiliar").slider("enable");
+              $("#artistfamiliar").on("slide", function(slideEvt) {
+                artistfamiliarMin = slideEvt.value[0]/100;
+                artistfamiliarMax = slideEvt.value[1]/100;
+              });
+            }
+        });
         // get key from current url
          function getParameterByName(name) {
           name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
