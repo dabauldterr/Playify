@@ -9,144 +9,157 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <link rel="stylesheet" href="css/bootstrap.min.css">
-        
         <link rel="stylesheet" href="node_modules/bootstrap-slider/dist/css/bootstrap-slider.css">
-        
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/main.css">
-
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-        
     </head>
     <body>
-              <div id = "cover"><img src="/img/loader_4.gif"></div>
-
+      <div id = "cover"><img src="/img/line2.gif"></div>
       <div class = "container">
-
         <div class="row">
           <div class="col-xs-5 center-block">
-           
-            <div class="input-group inputs">
+           <div class="input-group inputs">
               <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
               <input type="text" id = "artist" class=" typeahead form-control " placeholder="Artist">
-            </div>
+          </div>
+          <div class="input-group inputs">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-music"></span></span>
+            <input type="text" id = "track" class=" typeahead form-control " placeholder="Title">
+          </div>
+          <a id = "dropdown"href="#demo" data-toggle="collapse" >Click for More Search Options</a>
+          <div id="demo" class="collapse">
             
-            <div class="input-group inputs">
-              <span class="input-group-addon"><span class="glyphicon glyphicon-music"></span></span>
-              <input type="text" id = "track" class=" typeahead form-control " placeholder="Title">
-            </div>
-            
-            
-
-
-            <a id = "dropdown"href="#demo" data-toggle="collapse" >More options</a>
-            <div id="demo" class="collapse">
-              
-              <div class = "slider-container single-value-container single-value">
-                <label class="headings" for="results">No. of Tracks</label>
-                <div class="slider-and-value">
+            <div class = "slider-container single-value-container single-value">
+              <label class="headings" for="results">No. of Tracks</label>
+              <div class="slider-and-value">
+                <div id = "track-result-slider">
                   <span class = "current-values-container-left" id="resultsMax-value-label"><span class="current-values" id="resultsMax-value-left"></span></span>
-                   <input id="results" type="text" class="span2" value=""/>
+                    <input id="results" type="text" class="span2" value=""/>
                   <span class = "current-values-container-right" id=""><span class="current-values"id=""></span></span>
                 </div>
-                <input type="checkbox" id="c1" name="cc" />
-                <label id ="results-label"class ="check-label"for="c1"><span></span></label>
+                <div class="checkbox-container">
+                  <input type="checkbox" id="c1" name="cc" />
+                  <label id ="results-label"class ="check-label"for="c1"><span></span></label>
+                </div>
               </div>
+            </div>
 
               <div class = "slider-container">
                 <label class="headings" for="hotsong">Max/Min Song Hottness</label>
                 <div class="slider-and-value">
-                  <span class = "current-values-container-left" id="hotsong-value-label"><span class="current-values" id="hotsong-value-left"></span></span>
-                   <input id="hotsong" type="text" class="span2" value=""/>
-                  <span class = "current-values-container-right" id="hotsong-value-label"><span class="current-values"id="hotsong-value-right"></span></span>
+                  <div id = "song-hotness-slider">
+                    <span class = "current-values-container-left" id="hotsong-value-label"><span class="current-values" id="hotsong-value-left"></span></span>
+                      <span class="divider">/</span>           
+                      <span class = "current-values-container-right" id="hotsong-value-label"><span class="current-values"id="hotsong-value-right"></span></span>
+                    <input id="hotsong" type="text" class="span2" value=""/>
+                  </div>
+                  <div class="checkbox-container">
+                    <input type="checkbox" id="c2" name="cc" />
+                      <label id ="hotsong-label"class ="check-label"for="c2"><span></span></label>
+                  </div>
                 </div>
-                <input type="checkbox" id="c2" name="cc" />
-                <label id ="hotsong-label"class ="check-label"for="c2"><span></span></label>
               </div>
 
               <div class = "slider-container">
                 <label class="headings" for="hotartist">Max/Min Artist Hottness</label>
                 <div class="slider-and-value">
-                  <span class = "current-values-container-left" id="hotartist-value-label"><span class="current-values" id="hotartist-value-left"></span></span>
-                   <input id="hotartist" type="text" class="span2" value=""/>
-                  <span class = "current-values-container-right" id="hotartist-value-label"><span class="current-values"id="hotartist-value-right"></span></span>
+                  <div id = "artist-hotness-slider">
+                    <span class = "current-values-container-left" id="hotartist-value-label"><span class="current-values" id="hotartist-value-left"></span></span>
+                      <span class="divider">/</span>
+                      <span class = "current-values-container-right" id="hotartist-value-label"><span class="current-values"id="hotartist-value-right"></span></span> 
+                    <input id="hotartist" type="text" class="span2" value=""/>
+                  </div>
+                  
+                  <div class="checkbox-container">
+                    <input type="checkbox" id="c3" name="cc" />
+                      <label id ="hotartist-label"class ="check-label"for="c3"><span></span></label>
+                  </div>
                 </div>
-                <input type="checkbox" id="c3" name="cc" />
-                <label id ="hotartist-label"class ="check-label"for="c3"><span></span></label>
               </div>
 
               <div class = "slider-container">
                 <label class="headings" for="artistfamiliar">Max/Min Artist Familiarity</label>
                 <div class="slider-and-value">
-                  <span class = "current-values-container-left" id="artistfamiliar-value-label"><span class="current-values" id="artistfamiliar-value-left"></span></span>
-                   <input id="artistfamiliar" type="text" class="span2" value=""/>
-                  <span class = "current-values-container-right" id="artistfamiliar-value-label"><span class="current-values"id="artistfamiliar-value-right"></span></span>
+                  <div id = "artist-familiar-slider">
+                    <span class = "current-values-container-left" id="artistfamiliar-value-label"><span class="current-values" id="artistfamiliar-value-left"></span></span></span>
+                      <span class="divider">/</span>
+                      <span class = "current-values-container-right" id="artistfamiliar-value-label"><span class="current-values"id="artistfamiliar-value-right"></span></span>
+                    <input id="artistfamiliar" type="text" class="span2" value=""/>
+                  </div>
+                  <div class="checkbox-container">
+                    <input type="checkbox" id="c6" name="cc" />
+                    <label id ="artistfamiliar-label"class ="check-label"for="c6"><span></span></label>
+                  </div>
                 </div>
-                <input type="checkbox" id="c6" name="cc" />
-                <label id ="artistfamiliar-label"class ="check-label"for="c6"><span></span></label>
               </div>
+                
+             
 
               <div class = "slider-container">
                 <label class="headings" for="duration">Max/Min Duration</label>
                 <div class="slider-and-value">
-                  <span class = "current-values-container-left" id="duration-value-label"><span class="current-values" id="duration-value-left"></span></span>
-                   <input id="duration" type="text" class="span2" value=""/>
-                  <span class = "current-values-container-right" id="duration-value-label"><span class="current-values"id="duration-value-right"></span></span>
+                  <div id="duration-slider">
+                    <span class = "current-values-container-left" id="duration-value-label"><span class="current-values" id="duration-value-left"></span></span></span>
+                      <span class="divider">/</span>
+                      <span class = "current-values-container-right" id="duration-value-label"><span class="current-values"id="duration-value-right"></span></span>
+                    <input id="duration" type="text" class="span2" value=""/>
+                  </div>
+                  <div class="checkbox-container">
+                    <input type="checkbox" id="c4" name="cc" />
+                    <label id ="duration-label"class ="check-label"for="c4"><span></span></label>
+                  </div>
                 </div>
-                <input type="checkbox" id="c4" name="cc" />
-                <label id ="duration-label"class ="check-label"for="c4"><span></span></label>
               </div>
               
               <div class = "slider-container">
                 <label class="headings" for="tempo">Max/Min Tempo</label>
                 <div class="slider-and-value">
-                  <span class = "current-values-container-left" id="tempo-value-label"><span class="current-values" id="tempo-value-left"></span></span>
-                   <input id="tempo" type="text" class="span2" value=""/>
-                  <span class = "current-values-container-right" id="tempo-value-label"><span class="current-values"id="tempo-value-right"></span></span>
+                  <div id="tempo-slider">
+                    <span class = "current-values-container-left" id="tempo-value-label"><span class="current-values" id="tempo-value-left"></span></span></span>
+                      <span class="divider">/</span>
+                      <span class = "current-values-container-right" id="tempo-value-label"><span class="current-values"id="tempo-value-right"></span></span>
+                    <input id="tempo" type="text" class="span2" value=""/>
+                  </div>
+                  <div class="checkbox-container">
+                    <input type="checkbox" id="c5" name="cc" />
+                    <label id ="tempo-label"class ="check-label"for="c5"><span></span></label>
+                  </div>
                 </div>
-                <input type="checkbox" id="c5" name="cc" />
-                <label id ="tempo-label"class ="check-label"for="c5"><span></span></label>
               </div>
-            
             </div>
             
             <h3 id = "playlist-info">Login to Spotify to publish playlist </h3>
             <button class="btn btn-default"id = "mybutton5">Preview Playlist</button>
-            
-          
-
-
-
-
+           
           <a class ="auth-link" ><button id = "login" class="btn btn-default" >Login</button></a>
-          </div> 
-          <div class="panel panel-default " id = "originalPlaylist">
-              <div class="panel-heading">Playlist</div>
-                <div role="tabpanel">
-                  <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active"><a href="#playlist-tracks" aria-controls="playlist-tracks" role="tab" data-toggle="tab">Playlist Tracks</a></li>
-                    <li role="presentation"><a href="#playlist-artists" aria-controls="playlist-artists" role="tab" data-toggle="tab">Playlist Artist</a></li>
-                  </ul>
-                  <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="playlist-tracks">
-                      <div class="panel-body">
-                        <ul class="list-group" id = "tracks">
-                        </ul>
-                        <div class = "navi" id = "tracks-links"></div>
-                      </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="playlist-artists">
-                      <div class="panel-body">
-                        <div class="row" id="artists-thumb">
-                        </div>
-                      </div>
+        </div> 
+        <div class="panel panel-default " id = "originalPlaylist">
+          <div class="panel-heading">Playlist</div>
+            <div role="tabpanel">
+              <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#playlist-tracks" aria-controls="playlist-tracks" role="tab" data-toggle="tab">Tracks</a></li>
+                <li role="presentation"><a href="#playlist-artists" aria-controls="playlist-artists" role="tab" data-toggle="tab">Artist</a></li>
+              </ul>
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="playlist-tracks">
+                  <div class="panel-body">
+                    <ul class="list-group" id = "tracks">
+                    </ul>
+                    <div class = "navi" id = "tracks-links"></div>
+                  </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="playlist-artists">
+                  <div class="panel-body">
+                    <div class="row" id="artists-thumb">
                     </div>
                   </div>
-                </div>  
-              </div> 
-            </div>
+                </div>
+              </div>
+            </div>  
+          </div> 
+        </div>
            <!-- <div id = "wait"><img src="/img/gif-load (1).gif"></div>-->
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
         <script type="text/javascript" src="js/vendor/typehead.js"></script>
@@ -173,9 +186,11 @@
           if(!this.checked) {
             $("#results").slider("disable");
               resultsMax=50;
+              $('#track-result-slider').css('opacity','.5');
             }
             else {
               $("#results").slider("enable");
+              $('#track-result-slider').css('opacity','1');
               $("#results").on("slide", function(slideEvt) {
                 resultsMax = slideEvt.value;
               });
@@ -198,13 +213,17 @@
           $("#hotsong-value-right").text(slideEvt.value[1]);
         });
         $("#c2").click(function() {
+        //  $('#song-hotness-slider').removeClass( "blue" ).toggleClass( "opacity-toggle-enable" );
           if(!this.checked) {
             $("#hotsong").slider("disable");
+            $('#song-hotness-slider').css('opacity','.5');
               hotSongMin='';
               hotSongMax='';
+
             }
             else {
               $("#hotsong").slider("enable");
+              $('#song-hotness-slider').css('opacity','1');
               $("#hotsong").on("slide", function(slideEvt) {
                 hotSongMin = slideEvt.value[0]/100;
                 hotSongMax = slideEvt.value[1]/100;
@@ -228,12 +247,16 @@
           $("#hotartist-value-right").text(slideEvt.value[1]);
         });
         $("#c3").click(function() {
+        //  $('#artist-hotness-slider').toggleClass( "opacity-toggle-enable" );
+
           if(!this.checked) {
             $("#hotartist").slider("disable");
               hotArtistMax='';
               hotArtistMin='';
+              $('#artist-hotness-slider').css('opacity','.5');
             }
             else {
+              $('#artist-hotness-slider').css('opacity','1');
               $("#hotartist").slider("enable");
               $("#hotartist").on("slide", function(slideEvt) {
                 hotArtistMin = slideEvt.value[0]/100;
@@ -273,12 +296,14 @@
         $("#c4").click(function() {
           if(this.checked) {
             $("#duration").slider("enable");
+            $('#duration-slider').css('opacity','1');
               $("#duration").on("slide", function(slideEvt) {
                 durationMin = slideEvt.value[0];
                 durationMax = slideEvt.value[1];
               });
             }
             else {
+              $('#duration-slider').css('opacity','5');
               $("#duration").slider("disable");
               durationMin='';
               durationMax='';
@@ -303,11 +328,13 @@
         $("#c5").click(function() {
           if(!this.checked) {
             $("#tempo").slider("disable");
+             $('#tempo-slider').css('opacity','.5');
               tempoMin='';
               tempoMax='';
             }
             else {
               $("#tempo").slider("enable");
+               $('#tempo-slider').css('opacity','1');
               $("#tempo").on("slide", function(slideEvt) {
                 tempoMin = slideEvt.value[0];
                 tempoMax = slideEvt.value[1];
@@ -335,11 +362,15 @@
         $("#c6").click(function() {
           if(!this.checked) {
             $("#artistfamiliar").slider("disable");
+            $('#artist-familiar-slider').css('opacity','.5');
               artistfamiliarMax='';
               artistfamiliarMin='';
             }
             else {
+
+            
               $("#artistfamiliar").slider("enable");
+              $('#artist-familiar-slider').css('opacity','1');
               $("#artistfamiliar").on("slide", function(slideEvt) {
                 artistfamiliarMin = slideEvt.value[0]/100;
                 artistfamiliarMax = slideEvt.value[1]/100;

@@ -86,7 +86,7 @@ var playlistId
                     spotifyApi.addTracksToPlaylist(userIdis[2], playlistId[4], b)
                       .then(function(data) {
                         io.sockets.emit('succesful', { text: "Tracks have been added to playlist",playId:playlistId,userId:userIdis});
-                        console.log('Tracks added to '+a+'!');
+                       // console.log('Tracks added to '+a+'!');
                       
                       }, function(err) {
                         io.sockets.emit('error', {text:'error'});

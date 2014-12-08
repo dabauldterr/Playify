@@ -1,3 +1,6 @@
+html {
+    overflow-y: scroll; 
+}
 .input-group-addon{
     background: #8AC123;
 }
@@ -15,7 +18,7 @@ h3{
 #dropdown{
     text-align: center;
     display: block;
-    color: white;
+    color: rgb(138, 193, 35);
     font-weight: 300;
     font-size: 18px;
 }
@@ -39,11 +42,11 @@ input[type="checkbox"] + label span {
     cursor: pointer;
     position: relative;
     top: 10px;
-    border: 2px solid white;
+    border: 1px solid white;
 
 }
 input[type="checkbox"] + label span:after{
-    content:'Disabled';
+    content:'';
     font-size: 15px;
     color: white;
     margin-left: 30px;
@@ -51,11 +54,11 @@ input[type="checkbox"] + label span:after{
     font-weight: 200;
 }
 input[type="checkbox"]:checked + label span {
-    background:rgb(79, 207, 40);
-    border: 2px solid white;
+    background:rgb(138, 193, 35);
+    border: 1px solid white;
 }
 input[type="checkbox"]:checked + label span:after {
-    content:'Enabled';
+    content:'';
     font-size: 15px;
     color: white;
     margin-left: 30px;
@@ -69,7 +72,9 @@ input[type="checkbox"] + label span:after {
     content:'enable';
 }*/
 /**************end*******************/
-
+.btn:active{
+    background: #7D0300;
+}
 
 body{
     background: rgb(25, 67, 105);
@@ -80,7 +85,7 @@ body{
 .slider-and-value{
    display: inline-block;
 text-align: center;
-width: 85%;
+width: 100%;
 }
 .headings{
     color: #E2E0E0;
@@ -89,7 +94,7 @@ text-align: center;
 font-size: 24px;
 font-weight: 300;
 letter-spacing: 1px;
-margin-bottom: 0;
+margin-bottom: -7px;
 }
 
 .slider-selection {
@@ -110,14 +115,17 @@ margin-bottom: 0;
    margin-bottom: 60px;
    font-size: 22px;
 }
-
+.divider{
+    color:rgb(138, 193, 35);
+}
 .current-values{
     position: relative;
-    top: 5px;
+    
     color:  rgb(138, 193, 35);
     font-weight: 100;
+    display: inline;
 }
-.current-values-container-left{
+/*.current-values-container-left{
     float: left;
 width: 11%;
    
@@ -125,7 +133,7 @@ width: 11%;
 .current-values-container-right{
     float: right;
     width: 11%;
-}
+}*/
 .slider-track{
     background:white;
     border-bottom-right-radius: 8px;
@@ -136,7 +144,7 @@ width: 11%;
 
 }
 .slider.slider-horizontal{
-width: 77%;
+width: 100%;
 }
 .slider.slider-horizontal .slider-track{
     height: 15px;
@@ -144,12 +152,7 @@ width: 77%;
 .slider .tooltip.top{
     display: none;
 }
-#resultsMax-value-label{
-    width: 0%;
-}
-span#resultsMax-value-left{
-    margin-left: 24px
-}
+
 /***************************************/
 #cover{
     display:none;
@@ -157,13 +160,14 @@ span#resultsMax-value-left{
     position: fixed;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.72);
+    background: rgba(0, 0, 0, 0.84);
 }
 #cover img{
     display: block;
 margin-left: auto;
 margin-right: auto;
-padding-top: 69px;
+padding-top: 17%;
+width: 350px;
 }
 
 #playlist-info{
@@ -199,6 +203,8 @@ color:white;
 background: #EC4A4A;
 color:white;
 }
+
+
 #login,#create-another,#view-playlist,#publish-playlist{
     display: none;   
 }
@@ -208,7 +214,7 @@ color:white;
 display: block;
 margin: 0 auto;
 margin-top: 20px;
-background: #8ac123;
+background: #E1534F;
 color: white;
 /* font-weight: 200; */
 border-radius: 10px;
@@ -217,13 +223,15 @@ text-shadow: none;
 border: none;
 border-radius: 4px;
 font-size: 20px;
+margin-bottom: 40px;
 }
+
 #login,#create-another,#view-playlist{
     display: none;   
 }
 #login,#view-playlist{
   /*  display: none;*/
-    background: #8ac123;
+    background: #E1534F;
 }
 
 .center-block{
@@ -323,6 +331,18 @@ font-size: 23px;
 .panel{
 	margin: 40px 5px 0px 5px;
     display: none;
+    border: none;
+    margin-bottom: 40px;
+    border-color: rgb(138, 193, 35);margin-top: 10px;
+}
+.panel-default > .panel-heading{
+background: #8ac123;
+/* border: none; */
+text-align: center;
+color: white;
+font-weight: 300;
+font-size: 24px;
+letter-spacing: 1px;
 }
 .list-group a{
     width: 100%;
@@ -431,14 +451,61 @@ min-height: 200px; }
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.nav-tabs{
+    margin: 10px 17px 0px 17px;
+    border:none;
+}
 .nav-tabs li {
     width: 50%;
     text-align: center;
 }
 .nav-tabs>li.active>a{
-    color: #8ac123;
     background-color: #fff;
-border: 1px solid #ddd;
-border-bottom-color: transparent;
+border-bottom-color: #ddd;
 cursor: default;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus{
+    border: none;
+    color: #8ac123;
+
+}
+.nav-tabs>li>a:hover{
+    color: rgb(114, 145, 56);
+    background: #fff;
+}
+.nav-tabs>li>a{
+    border: none;
+    font-size: 20px;
+    font-weight: normal;
+    background-color: #fff;
+    color: #555;
+}
+.btn{
+    background:#E1534F;
+}
+#auth-link,#login:hover{
+    background: #CC2C28;
+}
+#auth-link,#login:focus{
+    background: #CC2C28;
+}
+button#publish-playlist:hover,button#login:hover,button#create-another:hover,button#view-playlist:hover,button#mybutton5.btn:hover{
+    background: #CC2C28;
+}
+button#publish-playlist:focus, button#login:focus,button#create-another:focus,button#view-playlist:focus,button#mybutton5.btn:focus{
+    background: #E1534F;
+}
+#view-playlist-text{
+    display: none;
+}
+
+.opacity-toggle{
+    opacity: .6;
+}
+#song-hotness-slider,#artist-hotness-slider,#track-result-slider,#tempo-slider,#duration-slider,#tempo-slider,#artist-familiar-slider{
+    opacity: 0.5;
+}
+
+.slider-and-value span{
+    color: rgb(246, 153, 92);
 }

@@ -31,7 +31,7 @@
         
     </head>
     <body> 
-              <div id = "cover"><img src="/img/loader_4.gif"></div>
+      <div id = "cover"><img src="/img/line2.gif"></div>
       <div class = "container">
         <div class="row">
           <div class="col-xs-5 center-block">
@@ -41,7 +41,7 @@
                       </div>
 
                       <button class="btn btn-default" id = "publish-playlist">Create</button>
-                      <h2 id = "view-playlist-text"> </h2>
+                      <h2 id = "view-playlist-text">What would you like to do next?</h2>
                       <a target = "_blank" id = "playlis-link"href=""><button class="btn btn-default" id = "view-playlist">View Your Playlist</button></a>
                       <a id = "create-another-link" href="index.html"><button class="btn btn-default" id = "create-another">Create Another</button></a>
 
@@ -68,31 +68,40 @@
           results = regex.exec(location.search);
           return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
           }
-          var socket = io.connect('//localhost:3000');           
-            
-              
-              var code = getParameterByName('code');
-              socket.emit('code', { x: code});
-              
+                var socket = io.connect('//localhost:3000');           
+                var code = getParameterByName('code');
+                socket.emit('code', { x: code});
+                
+                var pagerelode= false;
+                $(window).bind('beforeunload',function(){
+
+                        pagerelode=true;
+      
+                    
+
+                    });
+                if(pagerelode&&$('#publish-playlist').data('clicked')){
+                  alert("Playlsit already published");
+                  $(location).attr('href','index.html');
+                }
                 $('#publish-playlist').click(function(){
                   
-                  $('body').ajaxStart(function(){
+                  $(this).data('clicked', true);
+                  
                     $("#cover").css("display","block");
-                  });
-                
-                  var playlistName = localStorage.artistName + ':'+ localStorage.trackName +' '+ 'Playlist';
-                
-                  socket.emit('playlsitName', { x: playlistName,y:localStorage.tracksArray.split(",")});
-                  //check for error from creating playlist
-                  socket.on('error', function(data){
-                    if(data.text){
-                      $(location).attr('href','index.html');
-                    }
-                  });
-                  //when playlist sccesfully created and filled
-                  socket.on('succesful', function(data){
-                        console.log("text",data.text);
-                        console.log("text",data.playId);
+                    var playlistName = localStorage.artistName + ':'+ localStorage.trackName +' '+ 'Playlist';
+                    socket.emit('playlsitName', { x: playlistName,y:localStorage.tracksArray.split(",")});
+                    //check for error from creating playlist
+                    socket.on('error', function(data){
+                      if(data.text){
+                        alert("A problem occured. Please try again");
+                        $(location).attr('href','index.html');
+                      }
+                    });
+                  
+                    //when playlist sccesfully created and filled
+                    socket.on('succesful', function(data){
+                       boolPlaylistClicked = true;
                         var href = "https://play.spotify.com/user/"+data.playId[2]+"/playlist"+data.playId[4];
                           $('#playlis-link').attr('href',href)
                           $('#publish-playlist').css('display','none');
@@ -101,14 +110,11 @@
                           $('#publish-another').css('display','block');
                           $('#view-playlist').css('display','block');
                           $('#create-another').css('display','block');
-                          $('body').ajaxComplete(function(){
+                          $('#view-playlist-text').css('display','block');
                           $("#cover").css("display","none");
-                          });
-                  });
+                    });
                 });
-                
-                
-        </script>
+            </script>
         </div>
         
     </body>

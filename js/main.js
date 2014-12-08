@@ -132,7 +132,11 @@ function getPlaylist(a){
 		if(bool){
 			spotifyTracksPlaylist()
 		}else
-		spotifyTracks()});
+		spotifyTracks()}).fail(function(){
+			alert('Track not found. Please try again!');
+			$(location).attr('href','index.html');
+			$('#cover').css('display','none');
+		})
 
 }
 
@@ -364,3 +368,10 @@ $('#login').click(function(){
 	$('.panel').css('display','none');
 	
 });
+$( "#dropdown" ).click(function() {
+  $( this ).toggleClass( "opacity-toggle" );
+});
+
+
+
+
