@@ -14,12 +14,14 @@
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/main.css">
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
     </head>
     <body>
       <div id = "cover"><img src="/img/line2.gif"></div>
       <div class = "container">
         <div class="row">
           <div class="col-xs-5 center-block">
+            <h2>Creat a playlist based on Artist & Title</h2>
            <div class="input-group inputs">
               <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
               <input type="text" id = "artist" class=" typeahead form-control " placeholder="Artist">
@@ -31,7 +33,47 @@
           <a id = "dropdown"href="#demo" data-toggle="collapse" >Click for More Search Options</a>
           <div id="demo" class="collapse">
             
-            <div class = "slider-container single-value-container single-value">
+              <div class = "slider-container single-value-container type-value">
+                <label class="headings">Track type</label>
+                <div class="slider-and-value">
+                  <div id = "track-type-slider">
+                    <label>
+                      <input type="checkbox" id="1" value="live"  disabled>
+                      Live<span></span>
+                    </label>
+                    <label>
+                      <input type="checkbox" id="2" value="studio"  disabled>
+                      Studio<span></span>
+                    </label>
+                    <label>
+                      <input type="checkbox" id="3"  value="electronic" disabled>
+                      Electronic<span></span>
+                    </label>
+                    <label>
+                      <input type="checkbox" id="4"  value="acoustic" disabled>
+                      Acoustic<span></span>
+                    </label>
+                    <label>
+                      <input type="checkbox" id="5"  value="christmas"  disabled>
+                      Xmas<span></span>
+                    </label>
+                    <label>
+                      <input type="checkbox" id="6"  value="instrumental"  disabled>
+                      Instrumental<span></span>
+                    </label>
+                    <label>
+                      <input type="checkbox" id="7"  value="vocal"  disabled>
+                      vocal<span></span>
+                    </label>
+                  </div>
+                  <div class="checkbox-container">
+                    <input type="checkbox" id="c7" name="cc" />
+                    <label id ="type-label"class ="check-label"for="c7"><span></span></label>
+                  </div>
+                </div>
+              </div>
+              
+              <div class = "slider-container single-value-container single-value">
               <label class="headings" for="results">No. of Tracks</label>
               <div class="slider-and-value">
                 <div id = "track-result-slider">
@@ -44,7 +86,7 @@
                   <label id ="results-label"class ="check-label"for="c1"><span></span></label>
                 </div>
               </div>
-            </div>
+              </div>
 
               <div class = "slider-container">
                 <label class="headings" for="hotsong">Max/Min Song Hottness</label>
@@ -94,9 +136,7 @@
                   </div>
                 </div>
               </div>
-                
-             
-
+              
               <div class = "slider-container">
                 <label class="headings" for="duration">Max/Min Duration</label>
                 <div class="slider-and-value">
@@ -167,15 +207,79 @@
         <script type="text/javascript" src="js/jPages.js"></script>
         <script type="text/javascript" src="node_modules/bootstrap-slider/js/bootstrap-slider.js"></script>
         <script src="js/main.js"></script>
-        <script type="text/javascript" src="//localhost:3000/socket.io/socket.io.js">></script>
-        <script type="text/javascript">
-        
+        <script type="text/javascript" src="//localhost:3000/socket.io/socket.io.js"></script>
+        <script type="text/javascript" src="js/vendor/bootbox.min.js"></script>
+       <script type="text/javascript">
+       var xmasBool;
+       var acousticBool;
+       var electricBool;
+       var studioBool;
+       var liveBool;
+       var instrumentalBool;
+       var vocalBool
+       
+       if(typeof xmasBool == "undefined"){
+        xmasBool="any";
+       }
+       if(typeof vocalBool == "undefined"){
+        vocalBool="any";
+       }
+       if(typeof instrumentalBool == "undefined"){
+        instrumentalBool="any";
+       }
+       if(typeof acousticBool == "undefined"){
+        acousticBool="any";
+       }
+       if(typeof electricBool == "undefined"){
+        electricBool="any";
+       }
+       if(typeof studioBool == "undefined"){
+        studioBool="any";
+       }
+       if(typeof liveBool == "undefined"){
+        liveBool="any";
+       }
+       
+       {
+       $("#c7").click(function() {
+        checkboxSongType();
+          if(!this.checked) {
+            $("#1,#2,#3,#4,#5,#6,#7").attr("disabled",true);
+            $('#track-type-slider').css('opacity','.5');
+             xmasBool = "any";
+             acousticBool = "any";
+             electricBool = "any";
+             studioBool = "any";
+             liveBool = "any";
+             instrumentalBool = "any";
+             vocalBool = "any";
+            }
+            else {
+              $("#1,#2,#3,#4,#5,#6,#7").removeAttr("disabled");
+              $('#track-type-slider').css('opacity','1'); 
+            }
+        });
+
+      }
+       function checkboxSongType(){
+              xmasBool=$('#5').is(':checked');
+              vocalBool=$('#7').is(':checked');
+              instrumentalBool=$('#6').is(':checked');
+              acousticBool= $('#4').is(':checked');
+              electricBool=$('#3').is(':checked');
+              studioBool=$('#2').is(':checked');
+              liveBool=$('#1').is(':checked');
+       }
+
+       $('#track-type-slider').click(function() {
+checkboxSongType();
+        });
         var resultsMax=15;
         var resultsSlider = $('#results').slider({
           max:100,
           min:1,
           step:1,
-          value:40,
+          value:15,
           enabled:false
         });
         $("#resultsMax-value-left").text(40);

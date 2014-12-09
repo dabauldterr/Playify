@@ -105,7 +105,7 @@ function getPlaylist(a){
 	dups={};
 		
 	//get request
-	var url = 'http://developer.echonest.com/api/v4/playlist/static?api_key=JSSXGZIEPOLRS21K7&format=json&sort=song_hotttnesss-desc&bucket=id:spotify&bucket=tracks';
+	var url = 'http://developer.echonest.com/api/v4/playlist/static?api_key=JSSXGZIEPOLRS21K7&format=json&sort=song_hotttnesss-desc&bucket=id:spotify&bucket=tracks&song_type=christmas:'+xmasBool+'&song_type=live:'+liveBool+'&song_type=studio:'+studioBool+'&song_type=acoustic:'+acousticBool+'&song_type=electric:'+electricBool+'&song_type=instrumental:'+instrumentalBool+'&song_type=vocal:'+vocalBool;
 	$.getJSON(url,{
 		'song_id':a,
 		'type':'song-radio',
@@ -120,6 +120,7 @@ function getPlaylist(a){
 		'artist_min_hotttnesss':hotArtistMin,
 		'artist_max_familiarity':artistfamiliarMax,
 		'artist_min_familiarity':artistfamiliarMin
+		
 	}, 
 	function(data){
 		$.each(data.response.songs, function(i,item){
@@ -129,14 +130,36 @@ function getPlaylist(a){
 		});
 
 	}).done(function(){
+		if(songObjects==0){
+			bootbox.alert('There are 0 tracks in playlist. Please try again!', function() {
+  				$(location).attr('href','index.html');
+				$('#cover').css('display','none');
+			});
+		}
 		if(bool){
 			spotifyTracksPlaylist()
 		}else
-		spotifyTracks()}).fail(function(){
-			alert('Track not found. Please try again!');
-			$(location).attr('href','index.html');
-			$('#cover').css('display','none');
-		})
+		spotifyTracks()
+		}).fail(function(){		
+			bootbox.dialog({
+			  message: "Please try again!",
+			  title: 'Song : \''+track+'\' by artist: \''+artist+'\' was not found.',
+			  buttons: {
+			    success: {
+			      label: "OK!",
+			      className: "btn-success",
+			      callback: function() {
+			        $(location).attr('href','index.html');
+						$('#cover').css('display','none');
+			      }
+			  	}
+			  }
+			});	
+
+
+
+		});			
+			
 
 }
 
@@ -239,6 +262,7 @@ function pagination(){
     $('#mybutton5').css('display','none');
     $('#demo,#dropdown').css('display','none');
 	$('.input-group').css('display','none');
+	$('.col-xs-5.center-block h2').css('display','none');
 	$('#playlist-info').css('display','inherit');
 	$('#login').css('display','block');
 	$(".panel").css('display','inherit');

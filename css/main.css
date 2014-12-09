@@ -38,11 +38,13 @@ input[type="checkbox"] + label span {
     display: inline-block;
     width: 25px;
     height: 25px;
-    background:rgb(249, 85, 85);
+    background:rgb(193, 37, 35);
     cursor: pointer;
     position: relative;
     top: 10px;
-    border: 1px solid white;
+    border-radius: 3px;
+    box-shadow:  0px 0px 5px 1px rgb(60, 109, 188);
+    border: 3px solid white;
 
 }
 input[type="checkbox"] + label span:after{
@@ -77,7 +79,14 @@ input[type="checkbox"] + label span:after {
 }
 
 body{
-    background: rgb(25, 67, 105);
+   /* background: rgb(25, 67, 105);*/
+ 
+  background: -webkit-linear-gradient(90deg, rgb(25, 67, 105) 10%, #5B3E89 90%); /* Chrome 10+, Saf5.1+ */
+  background:    -moz-linear-gradient(90deg, rgb(25, 67, 105) 10%, #5B3E89 90%) /* FF3.6+ */
+  background:     -ms-linear-gradient(90deg, rgb(25, 67, 105) 10%, #5B3E89 90%); /* IE10 */
+  background:      -o-linear-gradient(90deg, rgb(25, 67, 105) 10%, #5B3E89 90%); /* Opera 11.10+ */
+  background:         linear-gradient(90deg, rgb(25, 67, 105) 10%, #5B3E89 90%); /* W3C */
+
 }
 
 /**************slider*******************/
@@ -120,11 +129,11 @@ margin-bottom: -7px;
 }
 .current-values{
     position: relative;
-    
-    color:  rgb(138, 193, 35);
-    font-weight: 100;
-    display: inline;
-}
+color: rgb(193, 134, 35);
+font-weight: 200;
+display: inline;
+font-size: 25px;
+letter-spacing: 2px;}
 /*.current-values-container-left{
     float: left;
 width: 11%;
@@ -229,7 +238,7 @@ margin-bottom: 40px;
 #login,#create-another,#view-playlist{
     display: none;   
 }
-#login,#view-playlist{
+.btn.btn-success,#login,#view-playlist{
   /*  display: none;*/
     background: #E1534F;
 }
@@ -483,13 +492,16 @@ cursor: default;
 .btn{
     background:#E1534F;
 }
+.btn.btn-success:hover{
+    background: #CC2C28;
+}
 #auth-link,#login:hover{
     background: #CC2C28;
 }
 #auth-link,#login:focus{
     background: #CC2C28;
 }
-button#publish-playlist:hover,button#login:hover,button#create-another:hover,button#view-playlist:hover,button#mybutton5.btn:hover{
+.btn.btn-success:hover,button#publish-playlist:hover,button#login:hover,button#create-another:hover,button#view-playlist:hover,button#mybutton5.btn:hover{
     background: #CC2C28;
 }
 button#publish-playlist:focus, button#login:focus,button#create-another:focus,button#view-playlist:focus,button#mybutton5.btn:focus{
@@ -502,10 +514,63 @@ button#publish-playlist:focus, button#login:focus,button#create-another:focus,bu
 .opacity-toggle{
     opacity: .6;
 }
-#song-hotness-slider,#artist-hotness-slider,#track-result-slider,#tempo-slider,#duration-slider,#tempo-slider,#artist-familiar-slider{
+#song-hotness-slider,#artist-hotness-slider,#track-result-slider,#tempo-slider,#duration-slider,#tempo-slider,#artist-familiar-slider,#track-type-slider{
     opacity: 0.5;
 }
 
 .slider-and-value span{
-    color: rgb(246, 153, 92);
+    
+}
+
+#track-type-slider label{
+    display: inline-block;
+margin-bottom: 5px;
+font-weight: 300;
+font-size: 25px;
+color: rgb(138, 193, 35);
+}
+#track-type-slider input{
+    display: inline;
+}
+.container{
+    padding-top: 50px
+}
+
+#track-type-slider label input[type="checkbox"] span {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background:rgb(249, 85, 85);
+    cursor: pointer;
+    position: relative;
+    top: 10px;
+    border-radius: 3px;
+    border: 3px solid white;
+    box-shadow: 0px 0px 5px 1px rgb(60, 109, 188);
+
+}
+input[type="checkbox"] + label span:after{
+    content:'';
+    font-size: 15px;
+    color: white;
+    margin-left: 30px;
+    vertical-align: super;
+    font-weight: 200;
+}
+input[type="checkbox"]:checked + label span {
+    background:rgb(138, 193, 35);
+    border: 3px solid white;
+    border-radius: 3px;
+    box-shadow: 0px 0px 5px 3px rgb(60, 109, 188);
+}
+input[type="checkbox"]:checked + label span:after {
+    content:'';
+    font-size: 15px;
+    color: white;
+    margin-left: 30px;
+    vertical-align: super;
+    font-weight: 200;
+}
+.col-xs-5.center-block h2{
+    text-align: center;
 }
